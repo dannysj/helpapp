@@ -22,10 +22,18 @@ export default class Internal_External_Selection extends React.Component {
   }
 
   render() {
+    var internalAlpha = 1.0;
+    var externalAlpha = 1.0;
+    if (!this.state.internal) {
+      internalAlpha = 0.3
+    }
+    if (!this.state.external) {
+      externalAlpha = 0.3
+    }
     return (
       <View style={styles.container}>
-        <OvalButton text='Internal' color='#e67e22' onTapped={this.internalTapped}/>
-        <OvalButton text='External' color='#f1c40f'onTapped={this.externalTapped}/>
+        <OvalButton text='Internal' color='#e67e22' alpha = {internalAlpha} onTapped={this.internalTapped}/>
+        <OvalButton text='External' color='#f1c40f'alpha={externalAlpha} onTapped={this.externalTapped}/>
       </View>
     );
   }

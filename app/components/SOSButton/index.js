@@ -2,10 +2,14 @@ import React from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
 export default class SOSButton extends React.Component {
+  constructor(props){
+    super(props);
+    this.SOSHandler = this.props.onTapped
+  }
   render() {
     return (
       <View style={{flex:1/2}}>
-        <TouchableOpacity style={styles.container}>
+        <TouchableOpacity style={styles.container} onPress={this.SOSHandler}>
           <Text style={styles.sosText}>Help!</Text>
         </TouchableOpacity>
       </View>
