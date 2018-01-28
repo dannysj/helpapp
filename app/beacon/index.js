@@ -32,7 +32,7 @@ export default class BeaconPage extends React.Component {
 
   componentDidMount() {
     navigator.geolocation.getCurrentPosition((position) => {
-      var lat = parseFloat(postion.coords.latitude)
+      var lat = parseFloat(position.coords.latitude)
       var long = parseFloat(position.coords.longitude)
 
       var initialRegion = {
