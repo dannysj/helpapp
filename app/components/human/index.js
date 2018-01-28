@@ -1,25 +1,87 @@
 import React from 'react';
-import { StyleSheet, Text, View, TouchableHighlight } from 'react-native';
+import { StyleSheet, Text, View, TouchableHighlight, TouchableWithoutFeedback } from 'react-native';
+import RedSpot from '../redspot';
 
 export default class Human extends React.Component {
+  constructor(props){
+    super(props);
+    this.state = {
+      isHead:false,
+      isBody:false,
+      isLeftHand:false,
+      isRightHand:false,
+      isLeftLeg:false,
+      isRightLeg:false,
+      isLeftFoot:false,
+      isRightFoot:false,
+    }
+
+  }
+
+  handlePress(evt, bodypos) {
+    console.log('x coord = ' + evt.nativeEvent.locationX + ' with body pos' + bodypos);
+    if (bodypos == 1) {
+      this.setState({isHead:true, headX: evt.nativeEvent.locationX, headY:evt.nativeEvent.locationY})
+    }
+    if (bodypos == 2) {
+
+    }
+    if (bodypos == 3) {
+
+    }
+    if (bodypos == 4) {
+
+    }
+    if (bodypos == 5) {
+
+    }
+    if (bodypos == 6) {
+
+    }
+    if (bodypos == 7) {
+
+    }
+  }
+
   render() {
     return (
+
       <View style={styles.container}>
-        
-        <View style={styles.head}></View>
-        <View style={styles.body} >
-          <View style={styles.lefthand} ></View>
-          <View style={styles.righthand} ></View>
-        </View>
+        <TouchableWithoutFeedback onPress= {(evt) => this.handlePress(evt, 1)}>
+          <View style={styles.head}>
+            {this.state.isHead ? <RedSpot locationX={this.state.headX} locationY={this.state.headY}/> : <View / > }
+          </View>
+        </TouchableWithoutFeedback>
+        <TouchableWithoutFeedback onPress= {(evt) => this.handlePress(evt, 2)}>
+          <View style={styles.body} >
+            <TouchableWithoutFeedback onPress= {(evt) => this.handlePress(evt, 3)}>
+            <View style={styles.lefthand} />
+            </TouchableWithoutFeedback>
+            <TouchableWithoutFeedback onPress= {(evt) => this.handlePress(evt, 4)}>
+            <View style={styles.righthand} />
+            </TouchableWithoutFeedback>
+          </View>
+        </TouchableWithoutFeedback>
+
         <View>
-          <View style={styles.leftleg} >
-            <View style={styles.leftfoot} />
-          </View>
-          <View style={styles.rightleg} >
-            <View style={styles.rightfoot} />
-          </View>
+          <TouchableWithoutFeedback onPress= {(evt) => this.handlePress(evt, 5)}>
+            <View style={styles.leftleg} >
+              <TouchableWithoutFeedback onPress= {(evt) => this.handlePress(evt, 6)}>
+                <View style={styles.leftfoot} />
+              </TouchableWithoutFeedback>
+            </View>
+          </TouchableWithoutFeedback>
+          <TouchableWithoutFeedback onPress= {(evt) => this.handlePress(evt, 7)}>
+            <View style={styles.rightleg} >
+              <TouchableWithoutFeedback onPress= {(evt) => this.handlePress(evt, 8)}>
+                <View style={styles.rightfoot} />
+              </TouchableWithoutFeedback>
+            </View>
+          </TouchableWithoutFeedback>
         </View>
+
       </View>
+
     );
   }
 }
