@@ -59,9 +59,11 @@ export default class BeaconPage extends React.Component {
         latitudeDelta: LATITUDE_DELTA
       }
 
-      this.setState({initialRegion: lastRegion})
+      this.setState({initialPosition: lastRegion})
       this.setState({markerPosition: lastRegion})
-    })
+    },
+    (error) => alert(JSON.stringify(error)),
+    {enableHighAccuracy: true, timeout: 20000, maximumAge: 1000})
   }
 
   componentWillUnmount() {
