@@ -3,6 +3,7 @@ import { Dimensions, StyleSheet, Text, View } from 'react-native';
 import MapView from 'react-native-maps';
 import CameraExample from '../camera';
 import VideoCall from '../videoCall';
+import BeaconDashboard from '../components/BeaconDashboard';
 
 const {width, height} = Dimensions.get('window')
 
@@ -27,12 +28,7 @@ export default class BeaconPage extends React.Component {
       markerPosition: {
         latitude: 0,
         longitude: 0
-      },
-      marker2Position: {
-        latitude: 44.97285530892421,
-        longitude: -93.2348245382309
-      },
-      distance: 0
+      }
     }
 
     this.calDis = function distance(lat1, lon1, lat2, lon2, unit) {
@@ -59,6 +55,8 @@ export default class BeaconPage extends React.Component {
       navigationBarHidden: true
     };
     this.props.navigator.push(nextRoute);
+=======
+>>>>>>> ac0697d54f98fae1fca9ab36cc937813a8093d1e
   }
 
   watchID: ?number = null
@@ -77,9 +75,6 @@ export default class BeaconPage extends React.Component {
 
       this.setState({initialPosition: initialRegion})
       this.setState({markerPosition: initialRegion})
-
-      var dist = this.calDis(lat, long, this.state.marker2Position.latitude, this.state.marker2Position.longitude, 'K')
-      this.setState({distance: dist.toFixed(2)})
     },
     (error) => alert(JSON.stringify(error)),
     {enableHighAccuracy: true, timeout: 20000, maximumAge: 1000})
@@ -87,9 +82,6 @@ export default class BeaconPage extends React.Component {
     this.watchID = navigator.geolocation.watchPosition((position) => {
       var lat = parseFloat(position.coords.latitude)
       var long = parseFloat(position.coords.longitude)
-
-      console.log(lat)
-      console.log(long)
 
       var lastRegion = {
         latitude: lat,
@@ -121,16 +113,15 @@ export default class BeaconPage extends React.Component {
                 </View>
 
             </MapView.Marker>
-
-            <MapView.Marker
-              coordinate={this.state.marker2Position}>
-                <View style={styles.radius}>
-                  <View style={styles.marker2} />
-                </View>
-            </MapView.Marker>
           </MapView>
+<<<<<<< HEAD
           <VideoCall onTapped={this._handleVideoPress} style={styles.video}> </VideoCall>
           <Text style={styles.text}>{this.state.distance} KM AWAY</Text>
+=======
+          <View style={styles.dashboard}>
+            <BeaconDashboard />
+          </View>
+>>>>>>> ac0697d54f98fae1fca9ab36cc937813a8093d1e
       </View>
     );
   }
@@ -150,12 +141,8 @@ const styles = StyleSheet.create({
   },
   container: {
     position: 'absolute',
-    top: 0,
-    left: 0,
-    bottom: 0,
-    right: 0,
-    justifyContent: 'flex-end',
-    alignItems: 'center'
+    alignItems: 'center',
+        width: '100%',
   },
   marker:{
     height: 20,
@@ -166,15 +153,6 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
     backgroundColor: '#007AFF'
   },
-  marker2:{
-    height: 20,
-    width: 20,
-    borderRadius: 3,
-    borderColor: 'white',
-    borderRadius: 20/2,
-    overflow: 'hidden',
-    backgroundColor: '#FF0000'
-  },
   map: {
     left: 0,
     right: 0,
@@ -182,6 +160,7 @@ const styles = StyleSheet.create({
     height: 350,
     position: 'absolute'
   },
+<<<<<<< HEAD
   text: {
     fontSize: 30,
     position: 'relative',
@@ -191,5 +170,11 @@ const styles = StyleSheet.create({
     alignSelf:'flex-end',
     position: 'absolute',
     bottom: 35
+=======
+  dashboard: {
+    width: '100%',
+    top: 350,
+    height: 300,
+>>>>>>> ac0697d54f98fae1fca9ab36cc937813a8093d1e
   }
 });
