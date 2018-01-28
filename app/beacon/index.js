@@ -7,7 +7,7 @@ const {width, height} = Dimensions.get('window')
 const SCREEN_HEIGHT = height
 const SCREEN_WIDTH = width
 const ASPECT_RATIO = width/height
-const LATITUDE_DELTA = 0.922
+const LATITUDE_DELTA = 0.0042
 const LONGITUDE_DELTA = LATITUDE_DELTA * ASPECT_RATIO
 
 export default class BeaconPage extends React.Component {
