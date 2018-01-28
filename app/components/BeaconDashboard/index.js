@@ -7,6 +7,11 @@ import load from '../../assets/loading_check_mark.json';
 export default class BeaconDashboard extends React.Component {
   constructor(props){
     super(props);
+    this.state = {
+      foundAmbulance:false,
+      foundHelper:false,
+      foundVideo:false,
+    }
   }
 
   componentDidMount() {
