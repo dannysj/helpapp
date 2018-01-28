@@ -24,7 +24,8 @@ export default class VideoCall extends React.Component {
 const styles = StyleSheet.create({
   container: {
     alignSelf: 'flex-end',
-    right: 10
+    right: 10,
+    bottom: -250
   },
   button: {
     alignItems: 'center',

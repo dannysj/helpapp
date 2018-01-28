@@ -10,7 +10,7 @@ const {width, height} = Dimensions.get('window')
 const SCREEN_HEIGHT = height
 const SCREEN_WIDTH = width
 const ASPECT_RATIO = width/height
-const LATITUDE_DELTA = 0.0012
+const LATITUDE_DELTA = 0.0018
 const LONGITUDE_DELTA = LATITUDE_DELTA * ASPECT_RATIO
 
 export default class BeaconPage extends React.Component {
@@ -28,7 +28,12 @@ export default class BeaconPage extends React.Component {
       markerPosition: {
         latitude: 0,
         longitude: 0
-      }
+      },
+      marker2Position: {
+        latitude: 44.97285530892421,
+        longitude: -93.2348245382309
+      },
+      distance: 0
     }
 
     this.calDis = function distance(lat1, lon1, lat2, lon2, unit) {
@@ -73,6 +78,9 @@ export default class BeaconPage extends React.Component {
 
       this.setState({initialPosition: initialRegion})
       this.setState({markerPosition: initialRegion})
+
+      var dist = this.calDis(lat, long, this.state.marker2Position.latitude, this.state.marker2Position.longitude, 'K')
+      this.setState({distance: dist.toFixed(2)})
     },
     (error) => alert(JSON.stringify(error)),
     {enableHighAccuracy: true, timeout: 20000, maximumAge: 1000})
@@ -111,12 +119,18 @@ export default class BeaconPage extends React.Component {
                 </View>
 
             </MapView.Marker>
+            <MapView.Marker
+              coordinate={this.state.marker2Position}>
+                <View style={styles.radius}>
+                  <View style={styles.marker2} />
+                </View>
+            </MapView.Marker>
           </MapView>
-          <VideoCall onTapped={this._handleVideoPress} style={styles.video}> </VideoCall>
-          <Text style={styles.text}>{this.state.distance} KM AWAY</Text>
           <View style={styles.dashboard}>
             <BeaconDashboard />
           </View>
+          <Text style={styles.text}>{this.state.distance} KM AWAY</Text>
+          <VideoCall onTapped={this._handleVideoPress} style={styles.video}> </VideoCall>
       </View>
     );
   }
@@ -148,6 +162,15 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
     backgroundColor: '#007AFF'
   },
+  marker2:{
+    height: 20,
+    width: 20,
+    borderRadius: 3,
+    borderColor: 'white',
+    borderRadius: 20/2,
+    overflow: 'hidden',
+    backgroundColor: '#FF0000'
+  },
   map: {
     left: 0,
     right: 0,
@@ -156,14 +179,9 @@ const styles = StyleSheet.create({
     position: 'absolute'
   },
   text: {
-    fontSize: 30,
+    fontSize: 20,
     position: 'relative',
-    top: -280
-  },
-  video: {
-    alignSelf:'flex-end',
-    position: 'absolute',
-    bottom: 35
+    top: 60
   },
   dashboard: {
     width: '100%',
