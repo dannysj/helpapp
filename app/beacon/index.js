@@ -55,8 +55,6 @@ export default class BeaconPage extends React.Component {
       navigationBarHidden: true
     };
     this.props.navigator.push(nextRoute);
-=======
->>>>>>> ac0697d54f98fae1fca9ab36cc937813a8093d1e
   }
 
   watchID: ?number = null
