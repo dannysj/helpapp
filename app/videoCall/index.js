@@ -29,9 +29,9 @@ const styles = StyleSheet.create({
   },
   button: {
     alignItems: 'center',
-    borderRadius: 50,
-    width: 75,
-    height: 75,
+    borderRadius: 25,
+    width: 50,
+    height: 50,
     padding: 10,
   },
   countContainer: {
@@ -42,11 +42,12 @@ const styles = StyleSheet.create({
     color: '#FF00FF'
   },
   bigbutton: {
-    height:80,
-    width:85,
+    height:70,
+    width:70,
+    bottom: -15,
     alignItems:'center',
     justifyContent:'center',
-    backgroundColor:'#D3D3D3',
-    borderRadius: 75
+    backgroundColor:'#FF5252',
+    borderRadius: 35
   }
 });
