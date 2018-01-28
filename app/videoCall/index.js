@@ -12,8 +12,6 @@ export default class videoCall extends React.Component {
     }
   }
 
-
-
   render() {
     return (
      <View style={styles.container}>
@@ -21,7 +19,7 @@ export default class videoCall extends React.Component {
         <Image
           style={styles.button}
           source={require('./myButton.png')}
-
+         
         />
        </TouchableOpacity>
 
@@ -34,7 +32,6 @@ export default class videoCall extends React.Component {
     );
   }
 }
-
 
 const styles = StyleSheet.create({
   container: {
@@ -57,10 +54,10 @@ const styles = StyleSheet.create({
     color: '#FF00FF'
   },
   bigbutton: {
-    height:150,
-    width:150,
-    alignItems:'center',
-    justifyContent:'center',
+    height:150, 
+    width:150, 
+    alignItems:'center', 
+    justifyContent:'center', 
     backgroundColor:'#D3D3D3',
     borderRadius: 75
   }
