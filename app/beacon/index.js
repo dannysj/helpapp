@@ -24,8 +24,27 @@ export default class BeaconPage extends React.Component {
       markerPosition: {
         latitude: 0,
         longitude: 0
-      }
+      },
+      marker2Position: {
+        latitude: 44.97285530892421,
+        longitude: -93.2348245382309
+      },
+      distance: 0
     }
+
+    this.calDis = function distance(lat1, lon1, lat2, lon2, unit) {
+  var radlat1 = Math.PI * lat1/180
+  var radlat2 = Math.PI * lat2/180
+  var theta = lon1-lon2
+  var radtheta = Math.PI * theta/180
+  var dist = Math.sin(radlat1) * Math.sin(radlat2) + Math.cos(radlat1) * Math.cos(radlat2) * Math.cos(radtheta);
+  dist = Math.acos(dist)
+  dist = dist * 180/Math.PI
+  dist = dist * 60 * 1.1515
+  if (unit=="K") { dist = dist * 1.609344 }
+  if (unit=="N") { dist = dist * 0.8684 }
+  return dist
+}
   }
 
   watchID: ?number = null
@@ -44,6 +63,9 @@ export default class BeaconPage extends React.Component {
 
       this.setState({initialPosition: initialRegion})
       this.setState({markerPosition: initialRegion})
+
+      var dist = this.calDis(lat, long, this.state.marker2Position.latitude, this.state.marker2Position.longitude, 'K')
+      this.setState({distance: dist.toFixed(2)})
     },
     (error) => alert(JSON.stringify(error)),
     {enableHighAccuracy: true, timeout: 20000, maximumAge: 1000})
@@ -51,6 +73,9 @@ export default class BeaconPage extends React.Component {
     this.watchID = navigator.geolocation.watchPosition((position) => {
       var lat = parseFloat(position.coords.latitude)
       var long = parseFloat(position.coords.longitude)
+
+      console.log(lat)
+      console.log(long)
 
       var lastRegion = {
         latitude: lat,
@@ -82,7 +107,15 @@ export default class BeaconPage extends React.Component {
                 </View>
 
             </MapView.Marker>
+
+            <MapView.Marker
+              coordinate={this.state.marker2Position}>
+                <View style={styles.radius}>
+                  <View style={styles.marker2} />
+                </View>
+            </MapView.Marker>
           </MapView>
+          <Text>{this.state.distance} KM AWAY</Text>
       </View>
     );
   }
@@ -117,6 +150,15 @@ const styles = StyleSheet.create({
     borderRadius: 20/2,
     overflow: 'hidden',
     backgroundColor: '#007AFF'
+  },
+  marker2:{
+    height: 20,
+    width: 20,
+    borderRadius: 3,
+    borderColor: 'white',
+    borderRadius: 20/2,
+    overflow: 'hidden',
+    backgroundColor: '#FF0000'
   },
   map: {
     left: 0,
