@@ -7,7 +7,7 @@ const {width, height} = Dimensions.get('window')
 const SCREEN_HEIGHT = height
 const SCREEN_WIDTH = width
 const ASPECT_RATIO = width/height
-const LATITUDE_DELTA = 0.922
+const LATITUDE_DELTA = 0.0042
 const LONGITUDE_DELTA = LATITUDE_DELTA * ASPECT_RATIO
 
 export default class BeaconPage extends React.Component {
@@ -32,7 +32,7 @@ export default class BeaconPage extends React.Component {
 
   componentDidMount() {
     navigator.geolocation.getCurrentPosition((position) => {
-      var lat = parseFloat(postion.coords.latitude)
+      var lat = parseFloat(position.coords.latitude)
       var long = parseFloat(position.coords.longitude)
 
       var initialRegion = {
@@ -59,9 +59,11 @@ export default class BeaconPage extends React.Component {
         latitudeDelta: LATITUDE_DELTA
       }
 
-      this.setState({initialRegion: lastRegion})
+      this.setState({initialPosition: lastRegion})
       this.setState({markerPosition: lastRegion})
-    })
+    },
+    (error) => alert(JSON.stringify(error)),
+    {enableHighAccuracy: true, timeout: 20000, maximumAge: 1000})
   }
 
   componentWillUnmount() {
