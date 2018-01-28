@@ -1,12 +1,13 @@
 import React from 'react';
 import { Dimensions, StyleSheet, Text, View } from 'react-native';
 import MapView from 'react-native-maps';
+import BeaconDashboard from '../components/BeaconDashboard';
 
 const {width, height} = Dimensions.get('window')
 
 const SCREEN_HEIGHT = height
 const SCREEN_WIDTH = width
-const ASPECT_RATIO = width/height 
+const ASPECT_RATIO = width/height
 const LATITUDE_DELTA = 0.0042
 const LONGITUDE_DELTA = LATITUDE_DELTA * ASPECT_RATIO
 
@@ -83,6 +84,9 @@ export default class BeaconPage extends React.Component {
 
             </MapView.Marker>
           </MapView>
+          <View style={styles.dashboard}>
+            <BeaconDashboard />
+          </View>
       </View>
     );
   }
@@ -102,12 +106,8 @@ const styles = StyleSheet.create({
   },
   container: {
     position: 'absolute',
-    top: 0,
-    left: 0,
-    bottom: 0,
-    right: 0,
-    justifyContent: 'flex-end',
-    alignItems: 'center'
+    alignItems: 'center',
+        width: '100%',
   },
   marker:{
     height: 20,
@@ -124,5 +124,10 @@ const styles = StyleSheet.create({
     top: 0,
     height: 350,
     position: 'absolute'
+  },
+  dashboard: {
+    width: '100%',
+    top: 350,
+    height: 300,
   }
 });
