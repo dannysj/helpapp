@@ -15,7 +15,7 @@ export default class Home extends React.Component {
     const nextRoute = {
       component: BeaconPage,
       title: 'Beacon Page',
-      passProps: { myProp: 'bar' }
+      passProps: { myProp: 'bar'}
     };
     this.props.navigator.push(nextRoute);
   }
