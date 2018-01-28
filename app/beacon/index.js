@@ -1,18 +1,21 @@
 import React from 'react';
 import { Dimensions, StyleSheet, Text, View } from 'react-native';
 import MapView from 'react-native-maps';
+import CameraExample from '../camera';
+import VideoCall from '../videoCall';
 
 const {width, height} = Dimensions.get('window')
 
 const SCREEN_HEIGHT = height
 const SCREEN_WIDTH = width
-const ASPECT_RATIO = width/height 
-const LATITUDE_DELTA = 0.0042
+const ASPECT_RATIO = width/height
+const LATITUDE_DELTA = 0.0012
 const LONGITUDE_DELTA = LATITUDE_DELTA * ASPECT_RATIO
 
 export default class BeaconPage extends React.Component {
   constructor(props) {
     super(props)
+    this._handleVideoPress = this._handleVideoPress.bind(this)
 
     this.state = {
       initialPosition: {
@@ -33,18 +36,29 @@ export default class BeaconPage extends React.Component {
     }
 
     this.calDis = function distance(lat1, lon1, lat2, lon2, unit) {
-  var radlat1 = Math.PI * lat1/180
-  var radlat2 = Math.PI * lat2/180
-  var theta = lon1-lon2
-  var radtheta = Math.PI * theta/180
-  var dist = Math.sin(radlat1) * Math.sin(radlat2) + Math.cos(radlat1) * Math.cos(radlat2) * Math.cos(radtheta);
-  dist = Math.acos(dist)
-  dist = dist * 180/Math.PI
-  dist = dist * 60 * 1.1515
-  if (unit=="K") { dist = dist * 1.609344 }
-  if (unit=="N") { dist = dist * 0.8684 }
-  return dist
-}
+      var radlat1 = Math.PI * lat1/180
+      var radlat2 = Math.PI * lat2/180
+      var theta = lon1-lon2
+      var radtheta = Math.PI * theta/180
+      var dist = Math.sin(radlat1) * Math.sin(radlat2) + Math.cos(radlat1) * Math.cos(radlat2) * Math.cos(radtheta);
+      dist = Math.acos(dist)
+      dist = dist * 180/Math.PI
+      dist = dist * 60 * 1.1515
+      if (unit=="K") { dist = dist * 1.609344 }
+      if (unit=="N") { dist = dist * 0.8684 }
+      return dist
+    }
+  }
+
+  _handleVideoPress() {
+    console.log("Video")
+    const nextRoute = {
+      component: CameraExample,
+      title: 'Camera',
+      passProps: {myProp: 'bar'},
+      navigationBarHidden: true
+    };
+    this.props.navigator.push(nextRoute);
   }
 
   watchID: ?number = null
@@ -115,7 +129,8 @@ export default class BeaconPage extends React.Component {
                 </View>
             </MapView.Marker>
           </MapView>
-          <Text>{this.state.distance} KM AWAY</Text>
+          <VideoCall onTapped={this._handleVideoPress} style={styles.video}> </VideoCall>
+          <Text style={styles.text}>{this.state.distance} KM AWAY</Text>
       </View>
     );
   }
@@ -166,5 +181,15 @@ const styles = StyleSheet.create({
     top: 0,
     height: 350,
     position: 'absolute'
+  },
+  text: {
+    fontSize: 30,
+    position: 'relative',
+    top: -280
+  },
+  video: {
+    alignSelf:'flex-end',
+    position: 'absolute',
+    bottom: 35
   }
 });
