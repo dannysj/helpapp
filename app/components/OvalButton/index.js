@@ -2,11 +2,20 @@ import React from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
 export default class OvalButton extends React.Component {
+  var funcHandler;
+  constructor(props) {
+    super(props);
+    this.state = {
+      color: this.props.color,
+      text:this.props.text,
+    }
+    funcHandler = this.props.onTapped;
+  }
   render() {
     return (
-      <TouchableOpacity style={styles.container}>
+      <TouchableOpacity style={[styles.container,{backgroundColor:this.state.color}]} onPress=funcHandler>
         <View>
-          <Text style={styles.textWhite}>Internal</Text>
+          <Text style={styles.textWhite}>{this.state.text}</Text>
         </View>
       </TouchableOpacity>
     );
