@@ -38,6 +38,7 @@ export default class CameraExample extends React.Component {
                 backgroundColor: 'transparent',
                 flexDirection: 'row',
               }}>
+
               <TouchableOpacity
                 style={{
                   flex: 0.1,
@@ -57,11 +58,8 @@ export default class CameraExample extends React.Component {
                 </Text>
               </TouchableOpacity>
               <TouchableOpacity
-                style={{
-                  flex: 0.1,
-                  alignSelf: 'flex-start',
-                  alignItems: 'center',
-                }} onPress={this._exitButtonOnTap}>
+                style={style.xButtonCircle
+                } onPress={this._exitButtonOnTap}>
                   <Text
                   style={style.xButton}>
                   X
@@ -82,11 +80,23 @@ const style = StyleSheet.create({
     fontSize: 23,
     marginBottom: 10,
     color: 'white' },
-  xButton:{
-    fontSize: 32,
-    color: 'white',
+  xButtonCircle:{
+
     position: 'absolute',
-    top: 30,
-    left: -15
-  }
+    top: 20,
+    width: 40,
+    height: 40,
+    left: 20,
+    borderColor: "#FFF",
+    borderWidth: 3,
+    borderRadius: 20,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  xButton:{
+    fontSize: 25,
+    color: 'white',
+
+  },
+
 });

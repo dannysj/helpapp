@@ -1,9 +1,13 @@
 import React from 'react';
-import { Dimensions, StyleSheet, Text, View } from 'react-native';
+import { Dimensions, StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import MapView from 'react-native-maps';
 import CameraExample from '../camera';
 import VideoCall from '../videoCall';
 import BeaconDashboard from '../components/BeaconDashboard';
+import Animation from 'lottie-react-native';
+import DetailBoard from '../detailBoard';
+
+import radar from '../assets/radar_scanning.json';
 
 const {width, height} = Dimensions.get('window')
 
@@ -17,6 +21,10 @@ export default class BeaconPage extends React.Component {
   constructor(props) {
     super(props)
     this._handleVideoPress = this._handleVideoPress.bind(this)
+    this.gotoDetailBoard = this.gotoDetailBoard.bind(this)
+
+      this._exitButtonOnTap = this._exitButtonOnTap.bind(this)
+
 
     this.state = {
       initialPosition: {
@@ -50,6 +58,11 @@ export default class BeaconPage extends React.Component {
       return dist
     }
   }
+
+
+_exitButtonOnTap() {
+  this.props.navigator.pop();
+}
 
   _handleVideoPress() {
     console.log("Video")
@@ -107,11 +120,27 @@ export default class BeaconPage extends React.Component {
     navigator.geolocation.clearWatch(this.watchID)
   }
 
+  gotoDetailBoard() {
+    const nextRoute = {
+      component: DetailBoard,
+      title: 'Beacon Page',
+      passProps: { myProp: 'bar'},
+      navigationBarHidden: true
+    };
+    this.props.navigator.push(nextRoute);
+  }
+
   render() {
     return (
       <View style={styles.container}>
+      <TouchableOpacity
+        style={styles.xButton} onPress={this._exitButtonOnTap}>
+          <Text style={styles.buttonTitle}>x
+        </Text>
+      </TouchableOpacity>
         <MapView style={styles.map}
           region={this.state.initialPosition}>
+
             <MapView.Marker
               coordinate={this.state.markerPosition}>
                 <View style={styles.radius}>
@@ -119,17 +148,21 @@ export default class BeaconPage extends React.Component {
                 </View>
 
             </MapView.Marker>
+
             <MapView.Marker
               coordinate={this.state.marker2Position}>
                 <View style={styles.radius}>
                   <View style={styles.marker2} />
                 </View>
             </MapView.Marker>
+            <TouchableOpacity style={styles.bigbutton} onPress={this.gotoDetailBoard}>
+            <Text style={styles.buttonTitle}>→</Text>
+            </TouchableOpacity>
           </MapView>
           <View style={styles.dashboard}>
             <BeaconDashboard />
           </View>
-          <Text style={styles.text}>{this.state.distance} KM AWAY</Text>
+          <Text style={styles.label}>{this.state.distance} KM AWAY</Text>
           <VideoCall onTapped={this._handleVideoPress} style={styles.video}> </VideoCall>
       </View>
     );
@@ -183,9 +216,49 @@ const styles = StyleSheet.create({
     position: 'relative',
     top: 60
   },
+  label: {
+    fontSize: 15,
+    position: 'relative',
+    top: 60
+  },
   dashboard: {
     width: '100%',
     top: 350,
     height: 300
+  },
+  anim: {
+
+    width:80,
+    height: 80
+  },
+  bigbutton: {
+    height:60,
+    width:60,
+    position: 'absolute',
+    alignSelf: 'flex-end',
+    right: 15,
+    top: 15,
+    backgroundColor:'#00E676',
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderRadius: 30
+  },
+  xButton:{
+
+    position: 'absolute',
+    top: 20,
+    width: 40,
+    height: 40,
+    left: 20,
+    backgroundColor: '#EF5350',
+    borderRadius: 20,
+    alignItems: 'center',
+    justifyContent: 'center',
+    zIndex: 5
+  },
+  buttonTitle: {
+    fontSize: 30,
+    color: '#FFF',
+    zIndex: 16
   }
 });

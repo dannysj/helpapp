@@ -23,9 +23,12 @@ export default class Home extends React.Component {
   render() {
     return (
       <View style={styles.container}>
+        <Text style={styles.title}>Tap the injuries point, and tell us if it is internal or external</Text>
         <Human style={{flex: 2}}/>
         <Internal_External_Selection style={{flex: 1}}/>
-        <SOSButton onTapped={this._handleSOSPress} style={{flex: 1}}/>
+
+        <SOSButton onTapped={this._handleSOSPress} />
+
       </View>
     );
   }
@@ -40,5 +43,11 @@ const styles = StyleSheet.create({
   },
   sosText: {
     color: '#fff',
-  }
+  },
+  title: {
+    fontSize:15,
+    top:30,
+    textAlign: 'center',
+    zIndex: 5
+  },
 });
