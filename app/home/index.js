@@ -1,15 +1,16 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import Human from '../components/human';
+import SOSButton from '../components/SOSButton';
+import Internal_External_Selection from '../components/internal_external_selection';
 
 export default class Home extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <Human />
-        <Text>Open up Home la.js to start working on your app!</Text>
-        <Text>Changes you make will automatically reload.</Text>
-        <Text>Shake your phone to open the developer menu.</Text>
+        <Human style={{flex: 2}}/>
+        <Internal_External_Selection style={{flex: 1}}/>
+        <SOSButton style={{flex: 1}}/>
       </View>
     );
   }
@@ -22,4 +23,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  sosText: {
+    color: '#fff',
+  }
 });

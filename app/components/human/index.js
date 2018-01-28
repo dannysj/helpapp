@@ -1,10 +1,11 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, TouchableHighlight } from 'react-native';
 
 export default class Human extends React.Component {
   render() {
     return (
       <View style={styles.container}>
+        
         <View style={styles.head}></View>
         <View style={styles.body} >
           <View style={styles.lefthand} ></View>
