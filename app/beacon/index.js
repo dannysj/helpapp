@@ -112,14 +112,11 @@ export default class BeaconPage extends React.Component {
 
             </MapView.Marker>
           </MapView>
-<<<<<<< HEAD
           <VideoCall onTapped={this._handleVideoPress} style={styles.video}> </VideoCall>
           <Text style={styles.text}>{this.state.distance} KM AWAY</Text>
-=======
           <View style={styles.dashboard}>
             <BeaconDashboard />
           </View>
->>>>>>> ac0697d54f98fae1fca9ab36cc937813a8093d1e
       </View>
     );
   }
@@ -158,7 +155,6 @@ const styles = StyleSheet.create({
     height: 350,
     position: 'absolute'
   },
-<<<<<<< HEAD
   text: {
     fontSize: 30,
     position: 'relative',
@@ -168,11 +164,10 @@ const styles = StyleSheet.create({
     alignSelf:'flex-end',
     position: 'absolute',
     bottom: 35
-=======
+  },
   dashboard: {
     width: '100%',
     top: 350,
-    height: 300,
->>>>>>> ac0697d54f98fae1fca9ab36cc937813a8093d1e
+    height: 300
   }
 });
