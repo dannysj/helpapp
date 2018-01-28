@@ -6,7 +6,7 @@ const {width, height} = Dimensions.get('window')
 
 const SCREEN_HEIGHT = height
 const SCREEN_WIDTH = width
-const ASPECT_RATIO = width/height
+const ASPECT_RATIO = width/height 
 const LATITUDE_DELTA = 0.0042
 const LONGITUDE_DELTA = LATITUDE_DELTA * ASPECT_RATIO
 
@@ -122,8 +122,7 @@ const styles = StyleSheet.create({
     left: 0,
     right: 0,
     top: 0,
-    bottom: 0,
+    height: 350,
     position: 'absolute'
   }
 });
-
