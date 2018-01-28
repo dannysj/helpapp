@@ -3,6 +3,11 @@ import { Text, View, TouchableOpacity, StyleSheet} from 'react-native';
 import { Camera, Permissions } from 'expo';
 
 export default class CameraExample extends React.Component {
+  constructor(props) {
+    super(props)
+    this._exitButtonOnTap = this._exitButtonOnTap.bind(this)
+  }
+
   state = {
     hasCameraPermission: null,
     type: Camera.Constants.Type.back,
@@ -11,6 +16,10 @@ export default class CameraExample extends React.Component {
   async componentWillMount() {
     const { status } = await Permissions.askAsync(Permissions.CAMERA);
     this.setState({ hasCameraPermission: status === 'granted' });
+  }
+
+  _exitButtonOnTap() {
+    this.props.navigator.pop();
   }
 
   render() {
@@ -52,7 +61,7 @@ export default class CameraExample extends React.Component {
                   flex: 0.1,
                   alignSelf: 'flex-start',
                   alignItems: 'center',
-                }}>
+                }} onPress={this._exitButtonOnTap}>
                   <Text
                   style={style.xButton}>
                   X
@@ -68,13 +77,13 @@ export default class CameraExample extends React.Component {
 
 const style = StyleSheet.create({
   flipButton:{
-    right: -30, 
+    right: -30,
     bottom: 30,
-    fontSize: 23, 
-    marginBottom: 10, 
+    fontSize: 23,
+    marginBottom: 10,
     color: 'white' },
   xButton:{
-    fontSize: 22,
+    fontSize: 32,
     color: 'white',
     position: 'absolute',
     top: 30,
