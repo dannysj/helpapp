@@ -2,7 +2,7 @@
 
 This project was created during Minnehack 2018.
 
-![home screen](./screenshots/home.PNG)
+![home screen](./screenshots/home.PNG | width=100)
 
 ## Inspiration
 Thousands of Professional Helpers/Certified FIrst Aiders exist around the world, they are always ready and prepared for various situations but harder to encounter one. Our Apps works as a Uber App to connect these helpers and the victims in a fast and reliable way. Usually first aid comes with tons of hassle and delay so for patients to be able to contact/meet someone knowledgeable who can convey information beforehand to emergency help (such as 911) prior to their arrival is invaluable. Our app helps speed up the process of acquiring immediate help, thus have the potential to improve injury outcomes.
@@ -10,15 +10,15 @@ Thousands of Professional Helpers/Certified FIrst Aiders exist around the world,
 ## What it does
 * With this app, it allows the patient/reporter to mark which parts of injured person's body was injured.
 
-![injured part selection](./screenshots/select.PNG)
+![injured part selection](./screenshots/select.PNG | width=100)
 
 * Upon the simple request of the user (patient), the app contacts a nearby individual knowledgeable about the topic (i.e. expert first aiders) and also emergency help (i.e. 911) simultaneously
 
-![finding screen](./screenshots/find.PNG)
+![finding screen](./screenshots/find.PNG | width=100)
 
 * After this process, the app shows the location of the incoming help, the location of the patient and the ETA.
 
-![summary screen](./screenshots/otw.PNG)
+![summary screen](./screenshots/otw.PNG | width=100)
 
 
 ## How we built it
