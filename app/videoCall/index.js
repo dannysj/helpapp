@@ -33,6 +33,7 @@ const styles = StyleSheet.create({
     width: 50,
     height: 50,
     padding: 10,
+    zIndex:5,
   },
   countContainer: {
     alignItems: 'center',

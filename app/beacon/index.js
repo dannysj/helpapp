@@ -254,11 +254,11 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     alignItems: 'center',
     justifyContent: 'center',
-    zIndex: 5
+    zIndex: 15
   },
   buttonTitle: {
     fontSize: 30,
     color: '#FFF',
-    zIndex: 16
+    zIndex: 17
   }
 });
