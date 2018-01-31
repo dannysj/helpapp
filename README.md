@@ -10,15 +10,15 @@ Thousands of Professional Helpers/Certified FIrst Aiders exist around the world,
 ## What it does
 * With this app, it allows the patient/reporter to mark which parts of injured person's body was injured.
 
-![injured part selection](./screenshots/select.PNG | width=100)
+<img src="./screenshots/select.PNG" width="400" >
 
 * Upon the simple request of the user (patient), the app contacts a nearby individual knowledgeable about the topic (i.e. expert first aiders) and also emergency help (i.e. 911) simultaneously
 
-![finding screen](./screenshots/find.PNG | width=100)
+<img src="./screenshots/find.PNG" width="400" >
 
 * After this process, the app shows the location of the incoming help, the location of the patient and the ETA.
 
-![summary screen](./screenshots/otw.PNG | width=100)
+<img src="./screenshots/otw.PNG" width="400" >
 
 
 ## How we built it
