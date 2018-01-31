@@ -2,8 +2,8 @@
 
 This project was created during Minnehack 2018.
 
-![home screen](./screenshots/home.PNG | width=100)
 
+<img src="./screenshots/home.PNG" width="100" >
 ## Inspiration
 Thousands of Professional Helpers/Certified FIrst Aiders exist around the world, they are always ready and prepared for various situations but harder to encounter one. Our Apps works as a Uber App to connect these helpers and the victims in a fast and reliable way. Usually first aid comes with tons of hassle and delay so for patients to be able to contact/meet someone knowledgeable who can convey information beforehand to emergency help (such as 911) prior to their arrival is invaluable. Our app helps speed up the process of acquiring immediate help, thus have the potential to improve injury outcomes.
 
